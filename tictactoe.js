@@ -1,21 +1,24 @@
-// tictactoe : OX game
-// test first in console 
-// Game board show in console
-// [1][2][3]
-// [4][5][6]
-// [7][8][9]
+/* console version's pseudo code
+tictactoe : OX game
+test first in console 
+Game board show in console
+[1][2][3]
+[4][5][6]
+[7][8][9]
 
-// Select the position by type game.select(5) in console
-// Console will show
-// [1][2][3]
-// [4][X][6]
-// [7][8][9]
+Select the position by type game.select(5) in console
+Console will show
+[1][2][3]
+[4][X][6]
+[7][8][9]
 
-// Winning condition
-// Who’s get one of these set of position first win
-// 123, 456, 789, 147, 258, 369, 159, 357
+Winning condition
+Who’s get one of these set of position first win
+123, 456, 789, 147, 258, 369, 159, 357
 
-// Game start with X and then O
+Game start with X and then O 
+*/
+
 const game = (() => {
     const x_pos = [];
     const o_pos = [];
