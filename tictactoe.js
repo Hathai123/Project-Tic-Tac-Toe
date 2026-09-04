@@ -42,17 +42,24 @@ const game = (() => {
     };
 
     const select = (pos) => {
-        board[board.indexOf(pos)] = whoTurn;
-        if (whoTurn === "X") {
-            x_pos.push(pos);
-            checkWin(x_pos);
-            whoTurn = "O";
+        if (board.includes(pos)) {
+            board[board.indexOf(pos)] = whoTurn;
+            if (whoTurn === "X") {
+                x_pos.push(pos);
+                checkWin(x_pos);
+                whoTurn = "O";
+            }
+            else {
+                o_pos.push(pos);
+                checkWin(o_pos);
+                whoTurn = "X";
+            }
         }
-        else {
-            o_pos.push(pos);
-            checkWin(o_pos);
-            whoTurn = "X";
+        else{
+            console.log(`No "${pos}" position on board`);
+            showBoard();
         }
+
     };
 
     function checkWin(player_pos) {
@@ -69,8 +76,6 @@ const game = (() => {
         }
 
     }
-
-
 
     return { newGame, showBoard, select };
 })();
