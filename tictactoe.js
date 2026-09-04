@@ -37,11 +37,29 @@ const game = (() => {
         console.log(gameBoard);
     };
 
-    
+    const select = (pos) => {
+        board[board.indexOf(pos)] = whoTurn;
+        if (whoTurn === "X") {
+            x_pos.push(pos);
+            checkWin(x_pos)
+            whoTurn = "O";
+        }
+        else {
+            o_pos.push(pos);
+            checkWin(o_pos)
+            whoTurn = "X";
+        }
+        showBoard();
+    };
+
+    function checkWin(player_pos) {
+
+
+    }
 
 
 
-    return { newGame, showBoard, };
+    return { newGame, showBoard, select};
 })();
 
 game.showBoard();
