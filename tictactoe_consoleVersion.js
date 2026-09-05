@@ -1,3 +1,24 @@
+/* console version's pseudo code
+tictactoe : OX game
+test first in console 
+Game board show in console
+[1][2][3]
+[4][5][6]
+[7][8][9]
+
+Select the position by type game.select(5) in console
+Console will show
+[1][2][3]
+[4][X][6]
+[7][8][9]
+
+Winning condition
+Who’s get one of these set of position first win
+123, 456, 789, 147, 258, 369, 159, 357
+
+Game start with X and then O 
+*/
+
 const game = (() => {
     const x_pos = [];
     const o_pos = [];
@@ -24,27 +45,21 @@ const game = (() => {
     };
 
     const select = (pos) => {
-        const player_select = document.getElementById(pos);
-        const pos_num = +pos;
-        if (board.includes(pos_num)) {
-            board[board.indexOf(pos_num)] = whoTurn;
+        if (board.includes(pos)) {
+            board[board.indexOf(pos)] = whoTurn;
             if (whoTurn === "X") {
-                x_pos.push(pos_num);
+                x_pos.push(pos);
                 checkWin(x_pos);
                 whoTurn = "O";
-
-                player_select.className = "isX";
             }
             else {
-                o_pos.push(pos_num);
+                o_pos.push(pos);
                 checkWin(o_pos);
                 whoTurn = "X";
-
-                player_select.className = "isO";
             }
         }
-        else {
-            console.log(`No "${pos_num}" position on board`);
+        else{
+            console.log(`No "${pos}" position on board`);
             showBoard();
         }
 
@@ -67,20 +82,5 @@ const game = (() => {
 
     return { newGame, showBoard, select };
 })();
+
 game.showBoard();
-
-
-// interact with html
-
-const gameBoard = document.getElementById("gameBoard");
-
-// create button for click
-for (let i = 1; i <= 9; i++) {
-    const button = document.createElement("button");
-    button.id = i;
-    button.addEventListener('click', (e) => {
-        game.select(e.target.id);
-    });
-    gameBoard.appendChild(button);
-
-}
