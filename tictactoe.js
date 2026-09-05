@@ -34,7 +34,7 @@ const game = (() => {
                 board[board.indexOf(pos_num)] = whoTurn;
                 if (whoTurn === "X") {
                     player_select.className = "isX";
-                    
+
                     x_pos.push(pos_num);
                     checkWin(x_pos);
 
@@ -71,13 +71,13 @@ const game = (() => {
         }
     }
 
-    function swapPlayer(){
+    function swapPlayer() {
         if (whoTurn === "X") {
-                whoTurn = "O";
-            }
-            else {
-                whoTurn = "X";
-            }
+            whoTurn = "O";
+        }
+        else {
+            whoTurn = "X";
+        }
     }
 
     return { newGame, showBoard, select };
@@ -97,5 +97,12 @@ for (let i = 1; i <= 9; i++) {
         game.select(e.target.id);
     });
     gameBoard.appendChild(button);
-
 }
+
+const newGame = document.getElementById("newGame");
+newGame.addEventListener('click', () => {
+    game.newGame();
+    for (const child of gameBoard.children) {
+        child.className = '';
+    }
+});

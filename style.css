@@ -62,7 +62,7 @@ body {
     color: var(--X-color);
     display: inline-block;
     /* Required for transform to work */
-    transform: translateY(-42px);
+    transform: translateY(-50px);
     /* Negative value moves it UP */
 
 }
@@ -71,7 +71,7 @@ body {
     content: "O";
     color: var(--O-color);
     display: inline-block;
-    transform: translateY(-35px);
+    transform: translateY(-40px);
 }
 
 button {
