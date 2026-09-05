@@ -54,10 +54,10 @@ body {
     font-family: Gaegu, sans-serif;
     font-size: 180px;
     opacity: 80%;
+    overflow: hidden;
 }
 
 .isX::after {
-    cursor: default;
     content: "X";
     color: var(--X-color);
     display: inline-block;
@@ -69,7 +69,6 @@ body {
 
 .isO::after {
     content: "O";
-    cursor: default;
     color: var(--O-color);
     display: inline-block;
     transform: translateY(-35px);
