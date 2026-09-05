@@ -6,6 +6,9 @@ const game = (() => {
     let haveWinner = false;
 
     const newGame = () => {
+        document.querySelectorAll("#gameBoard svg line").forEach(element => {
+            element.style.display = 'none';
+        });
         x_pos.length = 0;
         o_pos.length = 0;
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -57,12 +60,40 @@ const game = (() => {
 
     function checkWin(player_pos) {
         const winCondition = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
-        for (let con of winCondition) {
-            if (con.every((element) => player_pos.includes(element))) {
-                haveWinner = true;
-                break;
+        winCondition.forEach(
+            function (item, index) {
+                if (item.every((element) => player_pos.includes(element))) {
+                    haveWinner = true;
+                    const winLine = (() => {
+                        switch (index) {
+                            case 0:
+                                return document.getElementById("win1");
+                            case 1:
+                                return document.getElementById("win2");
+                            case 2:
+                                return document.getElementById("win3");
+                            case 3:
+                                return document.getElementById("win4");
+                            case 4:
+                                return document.getElementById("win5");
+                            case 5:
+                                return document.getElementById("win6");
+                            case 6:
+                                return document.getElementById("win7");
+                            case 7:
+                                return document.getElementById("win8");
+                        }
+                    })();
+                    if (whoTurn === "X") {
+                        winLine.style.stroke = "var(--X-color)";
+                    }
+                    else {
+                        winLine.style.stroke = "var(--O-color)";
+                    }
+                    winLine.style.display = "block";
+                }
             }
-        }
+        );
         showBoard();
         if (haveWinner) {
             console.log(`${whoTurn} WIN!!!`);
@@ -89,7 +120,7 @@ game.newGame();
 // interact with html
 const page = (() => {
     const gameBoard = document.getElementById("gameBoard");
-    
+
     // create button for click
     for (let i = 1; i <= 9; i++) {
         const button = document.createElement("button");
@@ -107,5 +138,5 @@ const page = (() => {
             child.className = '';
         }
     });
-    return gameBoard,newGameBtn;
+    return gameBoard, newGameBtn;
 })();
