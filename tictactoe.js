@@ -82,27 +82,30 @@ const game = (() => {
 
     return { newGame, showBoard, select };
 })();
-game.showBoard();
+
+game.newGame();
 
 
 // interact with html
-
-const gameBoard = document.getElementById("gameBoard");
-
-// create button for click
-for (let i = 1; i <= 9; i++) {
-    const button = document.createElement("button");
-    button.id = i;
-    button.addEventListener('click', (e) => {
-        game.select(e.target.id);
-    });
-    gameBoard.appendChild(button);
-}
-
-const newGame = document.getElementById("newGame");
-newGame.addEventListener('click', () => {
-    game.newGame();
-    for (const child of gameBoard.children) {
-        child.className = '';
+const page = (() => {
+    const gameBoard = document.getElementById("gameBoard");
+    
+    // create button for click
+    for (let i = 1; i <= 9; i++) {
+        const button = document.createElement("button");
+        button.id = i;
+        button.addEventListener('click', (e) => {
+            game.select(e.target.id);
+        });
+        gameBoard.appendChild(button);
     }
-});
+
+    const newGameBtn = document.getElementById("newGame");
+    newGameBtn.addEventListener('click', () => {
+        game.newGame();
+        for (const child of gameBoard.children) {
+            child.className = '';
+        }
+    });
+    return gameBoard,newGameBtn;
+})();
