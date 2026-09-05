@@ -2,3 +2,87 @@
     margin: 0;
     padding: 0;
 }
+
+@font-face {
+    font-family: CabinSketch;
+    src: url("./fonts/CabinSketch-Bold.ttf");
+}
+
+@font-face {
+    font-family: Gaegu;
+    src: url("./fonts/Gaegu-Regular.ttf");
+}
+
+:root {
+    --main-color-1: #f6eee3;
+    --main-color-2: #000000;
+    --X-color: #0000ff;
+    --O-color: #ff0000;
+
+}
+
+body {
+    background-color: var(--main-color-1);
+    color: var(--main-color-2);
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.header {
+    font-family: CabinSketch, sans-serif;
+    font-size: 100px;
+    margin: 30px 0px 50px;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    gap: 5px;
+    justify-content: center;
+
+    background-image: url(./table.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 450px 450px;
+
+}
+
+#gameBoard button {
+    width: 100%;
+    height: 100%;
+    font-family: Gaegu, sans-serif;
+    font-size: 180px;
+    opacity: 80%;
+}
+
+.isX::after {
+    cursor: default;
+    content: "X";
+    color: var(--X-color);
+    display: inline-block;
+    /* Required for transform to work */
+    transform: translateY(-42px);
+    /* Negative value moves it UP */
+
+}
+
+.isO::after {
+    content: "O";
+    cursor: default;
+    color: var(--O-color);
+    display: inline-block;
+    transform: translateY(-35px);
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+#newGame {
+    font-family: CabinSketch, sans-serif;
+    font-size: 50px;
+    margin-top: 50px;
+}
