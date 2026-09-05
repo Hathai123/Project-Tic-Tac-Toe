@@ -3,14 +3,14 @@ const game = (() => {
     const o_pos = [];
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
-    let isWin = false;
+    let haveWinner = false;
 
     const newGame = () => {
         x_pos.length = 0;
         o_pos.length = 0;
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         whoTurn = "X";
-        isWin = false;
+        haveWinner = false;
         showBoard();
     };
 
@@ -24,28 +24,33 @@ const game = (() => {
     };
 
     const select = (pos) => {
-        const player_select = document.getElementById(pos);
-        const pos_num = +pos;
-        if (board.includes(pos_num)) {
-            board[board.indexOf(pos_num)] = whoTurn;
-            if (whoTurn === "X") {
-                x_pos.push(pos_num);
-                checkWin(x_pos);
-                whoTurn = "O";
-
-                player_select.className = "isX";
-            }
-            else {
-                o_pos.push(pos_num);
-                checkWin(o_pos);
-                whoTurn = "X";
-
-                player_select.className = "isO";
-            }
+        if (haveWinner) {
+            console.log(`Game alredy decided. ${whoTurn} Win!!!`);
         }
         else {
-            console.log(`No "${pos_num}" position on board`);
-            showBoard();
+            const player_select = document.getElementById(pos);
+            const pos_num = +pos;
+            if (board.includes(pos_num)) {
+                board[board.indexOf(pos_num)] = whoTurn;
+                if (whoTurn === "X") {
+                    player_select.className = "isX";
+                    
+                    x_pos.push(pos_num);
+                    checkWin(x_pos);
+
+                }
+                else {
+                    player_select.className = "isO";
+
+                    o_pos.push(pos_num);
+                    checkWin(o_pos);
+
+                }
+            }
+            else {
+                console.log(`No "${pos_num}" position on board`);
+                showBoard();
+            }
         }
 
     };
@@ -54,15 +59,25 @@ const game = (() => {
         const winCondition = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
         for (let con of winCondition) {
             if (con.every((element) => player_pos.includes(element))) {
-                isWin = true;
+                haveWinner = true;
                 break;
             }
         }
         showBoard();
-        if (isWin) {
+        if (haveWinner) {
             console.log(`${whoTurn} WIN!!!`);
+        } else {
+            swapPlayer();
         }
+    }
 
+    function swapPlayer(){
+        if (whoTurn === "X") {
+                whoTurn = "O";
+            }
+            else {
+                whoTurn = "X";
+            }
     }
 
     return { newGame, showBoard, select };
