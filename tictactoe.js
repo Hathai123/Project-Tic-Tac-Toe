@@ -1,6 +1,6 @@
 const game = (() => {
-    const xPlayer = {name:"",pos:[]}
-    const oPlayer = {name:"",pos:[]}
+    const xPlayer = { name: "p1", pos: [] }
+    const oPlayer = { name: "p2", pos: [] }
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
     let haveWinner = false;
@@ -27,6 +27,21 @@ const game = (() => {
         }
     });
 
+    // display player's name
+    const showName = document.getElementById("showName");
+    function showPlayerName() {
+        while (showName.firstChild) {
+            showName.removeChild(showName.firstChild);
+        }
+        const xName = document.createElement("p");
+        xName.textContent=`X's Player : ${xPlayer.name}`;
+        const oName = document.createElement("p");
+        oName.textContent=`O's Player : ${oPlayer.name}`;
+        showName.appendChild(xName);
+        showName.appendChild(oName);
+
+    }
+
     // game script
     const newGame = () => {
         document.querySelectorAll("#gameBoard svg line").forEach(element => {
@@ -38,6 +53,7 @@ const game = (() => {
         whoTurn = "X";
         haveWinner = false;
         showBoard();
+        showPlayerName();
     };
 
     const showBoard = () => {

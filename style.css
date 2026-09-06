@@ -31,7 +31,17 @@ body {
 .header {
     font-family: CabinSketch, sans-serif;
     font-size: 100px;
-    margin: 30px 0px 50px;
+    margin: 30px 0px 10px;
+}
+
+#showName{
+    font-family: Gaegu, sans-serif;
+    height: 150px;
+    width: 450px;
+    margin: 0px auto 50px;
+    text-align: left;
+    font-size: 50px;
+    line-height: 1.5;
 }
 
 #gameBoard {
