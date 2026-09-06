@@ -5,6 +5,28 @@ const game = (() => {
     let whoTurn = "X";
     let haveWinner = false;
 
+    // interact html element
+    const gameBoard = document.getElementById("gameBoard");
+
+    // create button for click
+    for (let i = 1; i <= 9; i++) {
+        const button = document.createElement("button");
+        button.id = i;
+        button.addEventListener('click', (e) => {
+            select(e.target.id);
+        });
+        gameBoard.appendChild(button);
+    }
+
+    const newGameBtn = document.getElementById("newGame");
+    newGameBtn.addEventListener('click', () => {
+        newGame();
+        for (const child of gameBoard.children) {
+            child.className = '';
+        }
+    });
+
+    // game script
     const newGame = () => {
         document.querySelectorAll("#gameBoard svg line").forEach(element => {
             element.style.display = 'none';
@@ -115,28 +137,3 @@ const game = (() => {
 })();
 
 game.newGame();
-
-
-// interact with html
-const page = (() => {
-    const gameBoard = document.getElementById("gameBoard");
-
-    // create button for click
-    for (let i = 1; i <= 9; i++) {
-        const button = document.createElement("button");
-        button.id = i;
-        button.addEventListener('click', (e) => {
-            game.select(e.target.id);
-        });
-        gameBoard.appendChild(button);
-    }
-
-    const newGameBtn = document.getElementById("newGame");
-    newGameBtn.addEventListener('click', () => {
-        game.newGame();
-        for (const child of gameBoard.children) {
-            child.className = '';
-        }
-    });
-    return gameBoard, newGameBtn;
-})();
