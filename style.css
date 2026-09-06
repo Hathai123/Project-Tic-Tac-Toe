@@ -34,7 +34,7 @@ body {
     margin: 30px 0px 10px;
 }
 
-#showName{
+#showName {
     text-wrap: nowrap;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ body {
     position: relative;
 }
 
-#gameBoard svg{
+#gameBoard svg {
     height: 450px;
     width: 450px;
 
@@ -71,7 +71,7 @@ body {
     transform: translate(-50%);
 }
 
-#gameBoard svg line{
+#gameBoard svg line {
     display: none;
 }
 
@@ -112,4 +112,43 @@ button {
     font-family: CabinSketch, sans-serif;
     font-size: 50px;
     margin-top: 50px;
+}
+
+/* css for alert box */
+#customAlert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alertBox {
+    background-color: var(--main-color-1);
+    width: 450px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#form_playerName label{
+    font-family: CabinSketch, sans-serif;
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#form_playerName input{
+    font-size: 30px;
+    margin: 0px auto 30px;
+    display: block;
+}
+
+
+#formSubmit {
+    font-family: CabinSketch, sans-serif;
+    font-size: 50px;
 }

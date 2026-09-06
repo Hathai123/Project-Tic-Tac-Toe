@@ -1,6 +1,6 @@
 const game = (() => {
-    const xPlayer = { name: "Johannn", pos: [] }
-    const oPlayer = { name: "Mary", pos: [] }
+    const xPlayer = { name: "X", pos: [] }
+    const oPlayer = { name: "O", pos: [] }
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
     let haveWinner = false;
@@ -180,7 +180,35 @@ const game = (() => {
         }
     }
 
-    return { newGame, showBoard, select };
+    const setXName = (name) => {
+        xPlayer.name = name;
+    };
+    const setOName = (name) => {
+        oPlayer.name = name;
+    };
+
+
+    return { newGame, showBoard, select, setXName, setOName };
 })();
 
-game.newGame();
+const formBox = (() => {
+    const customAlert = document.getElementById("customAlert");
+    const openAlert = () => {
+        customAlert.style.display = "flex";
+    }
+    const closeAlert = () => {
+        customAlert.style.display = "none";
+    }
+    const submitBtn = document.getElementById("formSubmit");
+    submitBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const inputX = document.getElementById("inputX");
+        game.setXName(inputX.value);
+        const inputO = document.getElementById("inputO");
+        game.setOName(inputO.value);
+        game.newGame();
+        closeAlert();
+    })
+
+    return {openAlert, closeAlert};
+})();
