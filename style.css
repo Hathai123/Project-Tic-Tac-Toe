@@ -35,6 +35,9 @@ body {
 }
 
 #showName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: Gaegu, sans-serif;
     height: 150px;
     width: 450px;

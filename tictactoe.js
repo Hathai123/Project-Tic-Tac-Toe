@@ -1,6 +1,6 @@
 const game = (() => {
-    const xPlayer = { name: "p1", pos: [] }
-    const oPlayer = { name: "p2", pos: [] }
+    const xPlayer = { name: "John", pos: [] }
+    const oPlayer = { name: "Mary", pos: [] }
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
     let haveWinner = false;
@@ -30,16 +30,33 @@ const game = (() => {
     // display player's name
     const showName = document.getElementById("showName");
     function showPlayerName() {
-        while (showName.firstChild) {
-            showName.removeChild(showName.firstChild);
-        }
+        clearChild(showName);
         const xName = document.createElement("p");
-        xName.textContent=`X's Player : ${xPlayer.name}`;
+        xName.textContent = `X's Player : ${xPlayer.name}`;
         const oName = document.createElement("p");
-        oName.textContent=`O's Player : ${oPlayer.name}`;
+        oName.textContent = `O's Player : ${oPlayer.name}`;
         showName.appendChild(xName);
         showName.appendChild(oName);
+    }
 
+    function showWinner() {
+        clearChild(showName);
+        const winnerName = document.createElement("p");
+        if (whoTurn === "X") {
+            winnerName.textContent = `${xPlayer.name} WIN!!!`;
+        }
+        else {
+            winnerName.textContent = `${oPlayer.name} WIN!!!`;
+        }
+        
+        winnerName.setAttribute("style", "text-align: center; font-size: 70px; margin:auto;");
+        showName.appendChild(winnerName);
+    }
+
+    function clearChild(objNode) {
+        while (objNode.firstChild) {
+            objNode.removeChild(objNode.firstChild);
+        }
     }
 
     // game script
@@ -134,6 +151,7 @@ const game = (() => {
         showBoard();
         if (haveWinner) {
             console.log(`${whoTurn} WIN!!!`);
+            showWinner();
         } else {
             swapPlayer();
         }
