@@ -48,7 +48,15 @@ const game = (() => {
         else {
             winnerName.textContent = `${oPlayer.name} WIN!!!`;
         }
-        
+
+        winnerName.setAttribute("style", "text-align: center; font-size: 70px; margin:auto;");
+        showName.appendChild(winnerName);
+    }
+
+    function showTie() {
+        clearChild(showName);
+        const winnerName = document.createElement("p");
+        winnerName.textContent = `Ended in Tie`;
         winnerName.setAttribute("style", "text-align: center; font-size: 70px; margin:auto;");
         showName.appendChild(winnerName);
     }
@@ -84,7 +92,10 @@ const game = (() => {
 
     const select = (pos) => {
         if (haveWinner) {
-            console.log(`Game alredy decided. ${whoTurn} Win!!!`);
+            if (haveWinner === "Tie")
+                console.log(`Game alredy Ended. Game ended in Tie`);
+            else
+                console.log(`Game alredy decided. ${whoTurn} Win!!!`);
         }
         else {
             const player_select = document.getElementById(pos);
@@ -106,7 +117,6 @@ const game = (() => {
             }
             else {
                 console.log(`No "${pos_num}" position on board`);
-                showBoard();
             }
         }
 
@@ -152,6 +162,10 @@ const game = (() => {
         if (haveWinner) {
             console.log(`${whoTurn} WIN!!!`);
             showWinner();
+        } else if (board.every(item => typeof item !== 'number')) {
+            haveWinner = "Tie";
+            console.log(`Ended in Tie`);
+            showTie();
         } else {
             swapPlayer();
         }
