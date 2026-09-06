@@ -1,6 +1,6 @@
 const game = (() => {
-    const x_pos = [];
-    const o_pos = [];
+    const xPlayer = {name:"",pos:[]}
+    const oPlayer = {name:"",pos:[]}
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
     let haveWinner = false;
@@ -8,7 +8,7 @@ const game = (() => {
     // interact html element
     const gameBoard = document.getElementById("gameBoard");
 
-    // create button for click
+    // create button for add O/X in gameBoard
     for (let i = 1; i <= 9; i++) {
         const button = document.createElement("button");
         button.id = i;
@@ -18,6 +18,7 @@ const game = (() => {
         gameBoard.appendChild(button);
     }
 
+    // newgame button
     const newGameBtn = document.getElementById("newGame");
     newGameBtn.addEventListener('click', () => {
         newGame();
@@ -31,8 +32,8 @@ const game = (() => {
         document.querySelectorAll("#gameBoard svg line").forEach(element => {
             element.style.display = 'none';
         });
-        x_pos.length = 0;
-        o_pos.length = 0;
+        xPlayer.pos.length = 0;
+        oPlayer.pos.length = 0;
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         whoTurn = "X";
         haveWinner = false;
@@ -60,16 +61,14 @@ const game = (() => {
                 if (whoTurn === "X") {
                     player_select.className = "isX";
 
-                    x_pos.push(pos_num);
-                    checkWin(x_pos);
-
+                    xPlayer.pos.push(pos_num);
+                    checkWin(xPlayer.pos);
                 }
                 else {
                     player_select.className = "isO";
 
-                    o_pos.push(pos_num);
-                    checkWin(o_pos);
-
+                    oPlayer.pos.push(pos_num);
+                    checkWin(oPlayer.pos);
                 }
             }
             else {
