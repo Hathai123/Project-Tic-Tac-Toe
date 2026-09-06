@@ -1,5 +1,5 @@
 const game = (() => {
-    const xPlayer = { name: "John", pos: [] }
+    const xPlayer = { name: "Johannn", pos: [] }
     const oPlayer = { name: "Mary", pos: [] }
     let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let whoTurn = "X";
